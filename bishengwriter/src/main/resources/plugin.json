@@ -1,0 +1,6 @@
+{
+    "name": "bishengwriter",
+    "class": "com.alibaba.datax.plugin.writer.bishengwriter.BishengWriter",
+    "description": "useScene: test. mechanism: use datax framework to transport data to bisheng.",
+    "developer": "jake.jin"
+}

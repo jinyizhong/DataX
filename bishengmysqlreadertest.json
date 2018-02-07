@@ -1,0 +1,26 @@
+{
+  "job": {
+    "content": [
+      {
+        "reader": {
+          "name": "bishengmysqlreader",
+          "parameter": {
+            "logicTableName": "good_test"
+          }
+        },
+        "writer": {
+          "name": "streamwriter",
+          "parameter": {
+            "encoding": "UTF-8",
+            "print": true
+          }
+        }
+      }
+    ],
+    "setting": {
+      "speed": {
+        "channel": 5
+      }
+    }
+  }
+}

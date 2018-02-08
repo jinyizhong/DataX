@@ -10,6 +10,6 @@ public final class BishengConstant {
 
     public static String BISHENG_TABLE_PARTITION = "partition";
 
-    public static String BISHENG_SPLITER = "\01";
+    public static String BISHENG_SPLITTER = "\01";
 
 }

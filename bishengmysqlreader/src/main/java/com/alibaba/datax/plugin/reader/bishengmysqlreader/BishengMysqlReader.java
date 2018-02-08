@@ -105,7 +105,7 @@ public class BishengMysqlReader extends Reader {
                 tableGroupMap.get(instDb).add(table);
 
                 // 构建partition配置传参
-                String partKey = Joiner.on(BishengConstant.BISHENG_SPLITER).join(Lists.newArrayList(inst, db, table));
+                String partKey = Joiner.on(BishengConstant.BISHENG_SPLITTER).join(Lists.newArrayList(inst, db, table));
                 partitionMap.put(partKey, partition);
             }
 
@@ -128,7 +128,7 @@ public class BishengMysqlReader extends Reader {
                     if (!targetUsername.equals(jdbcConnect.getUsername()) || !targetPassword.equals(jdbcConnect.getPassword())) {
                         throw DataXException.asDataXException(
                                 BishengMysqlReaderErrorCode.SHARDING_USERPASS_NOT_SAME,
-                                BishengMysqlReaderErrorCode.SHARDING_USERPASS_NOT_SAME.getDescription());
+                                "logicTableName: [" + logicTableName + "]");
                     }
                 }
 
@@ -153,7 +153,7 @@ public class BishengMysqlReader extends Reader {
             if (CollectionUtils.isEmpty(tableMetas)) {
                 throw DataXException.asDataXException(
                         BishengMysqlReaderErrorCode.TABLE_META_EMPTY,
-                        BishengMysqlReaderErrorCode.TABLE_META_EMPTY.getDescription());
+                        "logicTableName: [" + logicTableName + "]");
             }
             List<String> columns = Lists.newArrayList();
             String pk = null;
@@ -172,6 +172,7 @@ public class BishengMysqlReader extends Reader {
             outputParameter.setColumn(columns);
             outputParameter.setSplitPk(pk);
 
+            // 这里必须转成json填入, 模拟正常的json文件输入, 否则会导致后续类型转换错误
             originalConfig = Configuration.from(JSONObject.toJSONString(outputParameter));
 
             // 其他配置
@@ -206,6 +207,10 @@ public class BishengMysqlReader extends Reader {
 
     }
 
+    /**
+     * 和原版mysqlreader不同之处:
+     * bisheng需要的 instance, tableSchema, tableName, partition 会参数填在record头部, 约定好顺序
+     */
     public static class Task extends Reader.Task {
         private static final Logger LOG = LoggerFactory.getLogger(Task.class);
 

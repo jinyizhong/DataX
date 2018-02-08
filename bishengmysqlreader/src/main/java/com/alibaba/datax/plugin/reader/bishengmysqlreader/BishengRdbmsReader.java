@@ -181,6 +181,7 @@ public class BishengRdbmsReader {
                                      Configuration readerSliceConfig) {
             Record record = recordSender.createRecord();
 
+            // 将bisheng需要用到的参数填在record头部, 约定好顺序
             String instance = readerSliceConfig.getString(BishengConstant.BISHENG_INSTANCE);
             String tableSchema = readerSliceConfig.getString(BishengConstant.BISHENG_TABLE_SCHEMA);
             String table = readerSliceConfig.getString(BishengConstant.BISHENG_TABLE_NAME);
@@ -297,7 +298,7 @@ public class BishengRdbmsReader {
         }
 
         private void validateBishengParameter(Configuration readerSliceConfig) {
-            LOG.info("Bisheng mysql reader task config: {}", readerSliceConfig);
+            LOG.debug("Bisheng mysql reader task config: {}", readerSliceConfig);
             readerSliceConfig.getNecessaryValue(BishengConstant.BISHENG_INSTANCE, BishengMysqlReaderErrorCode.REQUIRED_VALUE_INTERNAL_ERROR);
             readerSliceConfig.getNecessaryValue(BishengConstant.BISHENG_TABLE_SCHEMA, BishengMysqlReaderErrorCode.REQUIRED_VALUE_INTERNAL_ERROR);
             readerSliceConfig.getNecessaryValue(BishengConstant.BISHENG_TABLE_NAME, BishengMysqlReaderErrorCode.REQUIRED_VALUE_INTERNAL_ERROR);

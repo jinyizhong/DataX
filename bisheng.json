@@ -1,0 +1,34 @@
+{
+  "job": {
+    "content": [
+      {
+        "reader": {
+          "name": "bishengmysqlreader",
+          "parameter": {
+            "logicTableName": "good_test"
+          }
+        },
+        "writer": {
+          "name": "bishengwriter",
+          "parameter": {
+            "logicTableName": "good_test"
+          }
+        }
+      }
+    ],
+    "setting": {
+      "speed": {
+        "channel": 5
+      }
+    }
+  },
+  "core": {
+    "transport": {
+      "channel": {
+        "speed": {
+          "byte": 10485760
+        }
+      }
+    }
+  }
+}

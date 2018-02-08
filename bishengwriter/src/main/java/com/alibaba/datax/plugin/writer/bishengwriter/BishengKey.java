@@ -6,4 +6,7 @@ package com.alibaba.datax.plugin.writer.bishengwriter;
 public class BishengKey {
     // must have
     public static final String LOGIC_TABLE_NAME = "logicTableName";
+
+    // fill in
+    public static final String COLUMN = "column";
 }

@@ -100,7 +100,7 @@ public final class BishengReaderSplitUtil {
                         // bisheng补充: 增加分区
                         if (null != partitionMap && null != bishengInstance && null != bishengTableSchema) {
                             Object partition = partitionMap.get(
-                                    Joiner.on(BishengConstant.BISHENG_SPLITER).join(Lists.newArrayList(bishengInstance, bishengTableSchema, table))
+                                    Joiner.on(BishengConstant.BISHENG_SPLITTER).join(Lists.newArrayList(bishengInstance, bishengTableSchema, table))
                             );
                             if (null != partition) {
                                 tempSlice.set(BishengConstant.BISHENG_TABLE_PARTITION, partition);
@@ -121,7 +121,7 @@ public final class BishengReaderSplitUtil {
                         // bisheng补充: 增加分区
                         if (null != partitionMap && null != bishengInstance && null != bishengTableSchema) {
                             Object partition = partitionMap.get(
-                                    Joiner.on(BishengConstant.BISHENG_SPLITER).join(Lists.newArrayList(bishengInstance, bishengTableSchema, table))
+                                    Joiner.on(BishengConstant.BISHENG_SPLITTER).join(Lists.newArrayList(bishengInstance, bishengTableSchema, table))
                             );
                             if (null != partition) {
                                 tempSlice.set(BishengConstant.BISHENG_TABLE_PARTITION, partition);
